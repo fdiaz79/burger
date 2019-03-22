@@ -17,8 +17,36 @@
     </head>
 
 
-    <body>
-        
+    <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <img src = "../../public/assets/img/burger-flat.png" alt="burger-icon">
+                </div>
+                <br>
+                <div class="col-12">
+                    <h1>Eat-Da-Burger</h1>
+                </div>
+            </div>
+            <div class="row">
+                <form class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="newBurger" class="sr-only">Create your Burger</label>
+                        <input type="text" class="form-control" id="newBurger" placeholder="Your burger">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Place Order</button>
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" id="nonDevoured">
+                    PENDING DEVOURATION
+
+                </div>
+                <div class="col-sm-6" id="devoured">
+                    DEVOURED ALREADY
+                </div>
+            </div>
+        </div>
+
         {{{body}}}
 
        
