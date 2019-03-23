@@ -9,15 +9,23 @@ var orm = {
         });
     },
     insertOne: function(tableName, colName, value, cb){
-        var queryString = "INSERT INTO ?? ('??') VALUES ('?')";
+        var queryString = "INSERT INTO ?? (??) VALUES (?)";
         connection.query(queryString, [tableName, colName, value], function(err, res) {
             if (err) throw err;
             cb(res);
         });
     },
-    updateOne: function(tableName, colName, value, condition, cb){
+    updateOne: function(tableName, colName, value, id, cb){
+        console.log("orm-updateOne");
         var queryString = "UPDATE ?? SET ?? = ? WHERE id = ?";
-        connection.queryString(queryString, [tableName, colName, value, condition], function(err, res) {
+        connection.query(queryString, [tableName, colName, value, id], function(err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+    delete: function(tableName, id, cb) {
+        var queryString = "DELETE FROM ?? WHERE id = ?";
+        connection.query(queryString, [tableName, id], function(err, res) {
             if (err) throw err;
             cb(res);
         });

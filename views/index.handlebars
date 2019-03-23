@@ -1,22 +1,28 @@
 <div class="container">
+    <br>
     <div class="row">
-        <div class="col-12">
-            <img src = "../../assets/img/burger-flat.png" alt="burger-icon">
+        <div class="centered">            
+            <img src = "../../assets/img/burger-flat.png" alt="burger-icon">            
         </div>
         <br>
-        <div class="col-12">
+    </div>
+    <br>
+    <div class="row">
+        <div class="centered">
             <h1>Eat-Da-Burger</h1>
         </div>
     </div>
+    <br>
     <div class="row">
-        <form class="form-inline">
+        <form class="form-inline create-form centered">
             <div class="form-group mx-sm-3 mb-2">
-                <label for="newBurger" class="sr-only">Create your Burger</label>
-                <input type="text" class="form-control" id="newBurger" placeholder="Your burger">
+                <label for="new-burger" class="sr-only">Create your Burger</label>
+                <input type="text" class="form-control" id="new-burger" placeholder="Your burger">
             </div>
             <button type="submit" class="btn btn-primary mb-2">Place Order</button>
         </form>
     </div>
+    <br>
     <div class="row">
         <div class="col-sm-6" id="nonDevoured">
             <table class="table table-dark table-sm">
@@ -57,11 +63,15 @@
                         {{#if devoured}}
                             <tr>
                                 <td>
-                                    {{burger_name}}
+                                    {{burger_name}} 
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm reorderBurger" data-id="{{id}}" data-devoured="{{devoured}}">Reorder</button>
+                                    <button type="button" class="btn btn-primary btn-sm eatBurger" data-id="{{id}}" data-devoured="{{devoured}}">Reorder</button>
                                 </td>
+                                <td>
+                                    <span class="del-burger" data-id="{{id}}"><strong>X</strong></span>
+                                </td>
+
                             <tr></tr>
                         {{/if}}
                     {{/each}}

@@ -6,15 +6,21 @@ var burger = {
             cb(res);
         });
     },
-    insertOne: function(cb) {
+    insertOne: function(colName, val, cb) {
         orm.insertOne("burgers", colName, val, function(res) {
             cb(res);
         });
     },
-    updateOne: function(cb) {
+    updateOne: function(colName, val, id, cb) {
+        console.log("model-updateOne");
         orm.updateOne("burgers", colName, val, id, function(res) {
             cb(res);
-        })
+        });
+    },
+    delete: function(id, cb) {
+        orm.delete("burgers", id, function(res) {
+            cb(res);
+        });
     }
 };
 

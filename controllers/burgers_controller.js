@@ -19,16 +19,31 @@ router.post("/api/burgers", function(req, res) {
 });
 
 router.put("/api/burgers/:id", function(req, res) {
-    var condition = req.params.id;
+    var id = req.params.id;
     var value = req.body.devoured;
-    console.log (condition + "|" + value);
-    burger.updateOne("devoured", value, condition, function(result) {
+    console.log (id + "|" + value);
+    burger.updateOne("devoured", value, id, function(result) {
+        console.log(result.changedRows);
         if (result.changedRows == 0) {
+            console.log("burger.updateOne");
             return res.status(404).end();
         } else{
             res.status(200).end;
         }
     });
 });
+
+router.delete("/api/burgers/:id", function(req, res) {
+    var id = req.params.id;
+  
+    burger.delete(id, function(result) {
+      if (result.affectedRows == 0) {
+        // If no rows were changed, then the ID must not exist, so 404
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+  });  
 
 module.exports = router;

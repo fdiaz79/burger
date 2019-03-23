@@ -3,10 +3,12 @@ $(function() {
         
         var id = $(this).data("id");
         var devoured = $(this).data("devoured");
-        var newDevoured = false;
+        var newDevoured;
         if(!devoured){
             newDevoured = true;
-        }
+        } else{
+            newDevoured = false;
+        };
         var devObj = {
             devoured : newDevoured
         }
@@ -15,11 +17,10 @@ $(function() {
         $.ajax("/api/burgers/" + id, {
             type: "PUT",
             data: devObj
-        }).then(
-            function() {
-            console.log("changed devoured status");
-            // Reload the page to get the updated list
-            location.reload();
+        }).then(function() {
+                console.log("changed devoured status");
+                // Reload the page to get the updated list
+                location.reload();
             }
         );
     });
@@ -28,36 +29,35 @@ $(function() {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
-        var newCat = {
-            name: $("#ca").val().trim(),
-            sleepy: $("[name=sleepy]:checked").val().trim()
+        var newBurger = {
+            name: $("#new-burger").val().trim()
         };
 
         // Send the POST request.
-        $.ajax("/api/cats", {
+        $.ajax("/api/burgers", {
             type: "POST",
-            data: newCat
+            data: newBurger
         }).then(
             function() {
-            console.log("created new cat");
+            console.log("created new burger");
             // Reload the page to get the updated list
             location.reload();
             }
         );
     });
 
-    // $(".delete-cat").on("click", function(event) {
-    //     var id = $(this).data("id");
+    $(".del-burger").on("click", function(event) {
+        var id = $(this).data("id");
 
-    //     // Send the DELETE request.
-    //     $.ajax("/api/cats/" + id, {
-    //         type: "DELETE"
-    //     }).then(
-    //         function() {
-    //         console.log("deleted cat", id);
-    //         // Reload the page to get the updated list
-    //         location.reload();
-    //         }
-    //     );
-    // });
+        // Send the DELETE request.
+        $.ajax("/api/burgers/" + id, {
+            type: "DELETE"
+        }).then(
+            function() {
+            console.log("deleted burger", id);
+            // Reload the page to get the updated list
+            location.reload();
+            }
+        );
+    });
 });
