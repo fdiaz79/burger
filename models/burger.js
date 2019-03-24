@@ -12,8 +12,9 @@ var burger = {
         });
     },
     updateOne: function(colName, val, id, cb) {
-        console.log("model-updateOne");
+        
         orm.updateOne("burgers", colName, val, id, function(res) {
+            
             cb(res);
         });
     },

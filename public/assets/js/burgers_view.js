@@ -2,23 +2,23 @@ $(function() {
     $(".eatBurger").on("click", function(event) {
         
         var id = $(this).data("id");
-        var devoured = $(this).data("devoured");
+        var devoured = parseInt($(this).data("devoured"));
         var newDevoured;
-        if(!devoured){
-            newDevoured = true;
+        if(devoured === 0){
+            newDevoured = 1;
         } else{
-            newDevoured = false;
+            newDevoured = 0;
         };
         var devObj = {
             devoured : newDevoured
         }
         // Send the PUT request.
-        console.log(devObj);
+        
         $.ajax("/api/burgers/" + id, {
             type: "PUT",
             data: devObj
         }).then(function() {
-                console.log("changed devoured status");
+                // console.log("changed devoured status");
                 // Reload the page to get the updated list
                 location.reload();
             }
@@ -39,7 +39,7 @@ $(function() {
             data: newBurger
         }).then(
             function() {
-            console.log("created new burger");
+            // console.log("created new burger");
             // Reload the page to get the updated list
             location.reload();
             }
@@ -54,7 +54,7 @@ $(function() {
             type: "DELETE"
         }).then(
             function() {
-            console.log("deleted burger", id);
+            // console.log("deleted burger", id);
             // Reload the page to get the updated list
             location.reload();
             }
